@@ -18,9 +18,9 @@ CREATE SCHEMA IF NOT EXISTS `2122_ruanodaniel` DEFAULT CHARACTER SET utf8 COLLAT
 USE `2122_ruanodaniel` ;
 
 -- -----------------------------------------------------
--- Table `2122_ruanodaniel`.`tbl_ubicacion`
+-- Table `2122_ruanodaniel`.`tbl_lugar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_ubicacion` (
+CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_lugar` (
   `id_lugar` INT NOT NULL AUTO_INCREMENT,
   `nom_lugar` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id_lugar`))
@@ -42,7 +42,19 @@ CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_mesa` (
   INDEX `fk_lugar_mesa_idx` (`id_lugar` ASC) VISIBLE,
   CONSTRAINT `fk_lugar_mesa`
     FOREIGN KEY (`id_lugar`)
-    REFERENCES `2122_ruanodaniel`.`tbl_ubicacion` (`id_lugar`))
+    REFERENCES `2122_ruanodaniel`.`tbl_lugar` (`id_lugar`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `2122_ruanodaniel`.`tbl_perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_perfil` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `perfil_usuario` VARCHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -57,24 +69,12 @@ CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_reserva` (
   `id_mesa` INT NULL DEFAULT NULL,
   `fecha_fin_reserva` DATETIME NULL DEFAULT NULL,
   `nom_cliente_reserva` VARCHAR(20) NULL DEFAULT NULL,
-  `num_personas` VARCHAR(2) NULL DEFAULT NULL,
+  `num_personas_reserva` VARCHAR(2) NULL DEFAULT NULL,
   PRIMARY KEY (`id_reserva`),
   INDEX `fk_fecha_mesa_idx` (`id_mesa` ASC) VISIBLE,
   CONSTRAINT `fk_fecha_mesa`
     FOREIGN KEY (`id_mesa`)
     REFERENCES `2122_ruanodaniel`.`tbl_mesa` (`id_mesa`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
-
-
--- -----------------------------------------------------
--- Table `2122_ruanodaniel`.`tbl_perfil`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `2122_ruanodaniel`.`tbl_perfil` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `perfil_usuario` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
