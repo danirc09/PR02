@@ -13,14 +13,19 @@ WHERE tl.tipo_lugar = '{$lugar}' AND m.id_mesa = {$id}");
 $stmt->execute();
 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
 $estado = $sentencia[0]['estado_mesa'];
-echo $estado;
 
 if($estado == 0){
-    $stmt = $pdo->prepare("UPDATE tbl_mesa SET estado_mesa=? WHERE id_mesa = ?");
-    $stmt->execute([1,$id]);
-    header('Location: ../view/reservas.php?id='.$id_pag.'');
+    session_start();
+    $_SESSION['id_mesa']=$id;
+    $_SESSION['id_pag']=$id_pag;
+    header('Location: ../view/form_reservas.php?');
 }else{
-    $stmt = $pdo->prepare("UPDATE tbl_mesa SET estado_mesa=? WHERE id_mesa = ?");
-    $stmt->execute([0,$id]);
+    $fecha = getdate();
+    $fecha = $fecha['year']."-".$fecha['mon']."-".$fecha['mday']." ".$fecha['hours'].":".$fecha['minutes'].":".$fecha['seconds'];
+    $stmt = $pdo->prepare("UPDATE tbl_reserva r  
+    INNER JOIN tbl_mesa m ON r.id_mesa = m.id_mesa
+    SET r.fecha_fin_reserva=?, m.estado_mesa=?
+    WHERE m.id_mesa = ?");
+    $stmt->execute([$fecha,0,$id]);
     header('Location: ../view/reservas.php?id='.$id_pag.'');
 }

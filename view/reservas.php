@@ -40,8 +40,11 @@ if($id == 1){
             ?>
             <form method='post'>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre de la Terraza...">
-                <input type='number' name='sillas' id='sillas' placeholder="Sillas...">
                 <input type='number' name='mesa' id='mesa' placeholder="Mesa...">
+                <input type='number' name='sillas' id='sillas' placeholder="Sillas...">
+                <input type='date' name='fecha' id='fecha'>
+                <input type='time' name='hora_entrada' id='hora_entrada'>
+                <input type='time' name='hora_salida' id='hora_salida'>
                 <input type="submit" name="enviar" value="FILTRAR">
             </form>
             <?php
@@ -55,7 +58,7 @@ if($id == 1){
                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach($sentencia as $row){
                     echo "<div class='contenido_reservas'>";
-                    echo $row['nom_lugar']."<br>";
+                    echo "<b>".$row['nom_lugar']."</b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
                     if($row['estado_mesa'] == 0){
@@ -73,14 +76,16 @@ if($id == 1){
                 $nombre = $_POST['nombre'];
                 $sillas = $_POST['sillas'];
                 $mesa = $_POST['mesa'];
-                $stmt= $pdo->prepare("SELECT l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
+                $stmt= $pdo->prepare("SELECT r.fecha_ini_reserva, l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_reserva r
+                INNER JOIN tbl_mesa m ON r.id_mesa = m.id_mesa
                 INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
                 INNER JOIN tbl_tipo_lugar tl ON l.fk_id_tipo_lugar = tl.id_tipo_lugar
-                WHERE tl.tipo_lugar = 'Terraza' AND l.nom_lugar LIKE '%$nombre%' AND m.num_sillas_mesa LIKE '%$sillas%' AND m.numero_mesa LIKE '%$mesa%'
+                WHERE tl.tipo_lugar = 'Terraza' AND l.nom_lugar LIKE '%$nombre%' AND m.num_sillas_mesa LIKE '%$sillas%' 
+                AND m.numero_mesa LIKE '%$mesa%'
                 ORDER BY l.nom_lugar ASC");
                 $stmt->execute();
                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo "<div class='reservas2'>";
+                echo "<div class='reservas2'>";
                 foreach($sentencia as $row){
                     echo "<div class='contenido_reservas'>";
                     echo $row['nom_lugar']."<br>";

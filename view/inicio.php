@@ -70,6 +70,35 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <div id="content_log">
+                <?php
+                    $stmt= $pdo->prepare("SELECT r.fecha_ini_reserva, r.fecha_fin_reserva, r.nom_cliente_reserva , r.num_personas_reserva, 
+                    l.nom_lugar, m.numero_mesa, m.num_sillas_mesa FROM tbl_reserva r
+                    INNER JOIN tbl_mesa m ON r.id_mesa = m.id_mesa
+                    INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
+                    INNER JOIN tbl_tipo_lugar tl ON l.fk_id_tipo_lugar = tl.id_tipo_lugar 
+                    ORDER BY r.fecha_fin_reserva DESC");
+                    $stmt->execute();
+                    $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($sentencia as $row){
+                        if(!isset($row['fecha_fin_reserva'])){
+                            echo "Cliente: ".$row['nom_cliente_reserva']."<br>";
+                            echo "Entrada: ".$row['fecha_ini_reserva']."<br>";
+                            echo "Salida: Aún no ha salido<br>";
+                            echo "Num personas: ".$row['num_personas_reserva']."<br>";
+                            echo "Lugar: ".$row['nom_lugar']."<br>";
+                            echo "Mesa: ".$row['numero_mesa']."<br>";
+                            echo "Sillas: ".$row['num_sillas_mesa']."<br>";
+                        }else{
+                            echo "Cliente: ".$row['nom_cliente_reserva']."<br>";
+                            echo "Entrada: ".$row['fecha_ini_reserva']."<br>";
+                            echo "Salida: ".$row['fecha_fin_reserva']."<br>";
+                            echo "Num personas: ".$row['num_personas_reserva']."<br>";
+                            echo "Lugar: ".$row['nom_lugar']."<br>";
+                            echo "Mesa: ".$row['numero_mesa']."<br>";
+                            echo "Sillas: ".$row['num_sillas_mesa']."<br>";
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
