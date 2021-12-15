@@ -757,3 +757,7 @@ select:hover {
     background-color: #5f3e20;
     transition: 0.3s;
 }
+
+.icon_reserva {
+    width: 25px;
+}

@@ -71,7 +71,18 @@
                 <span class="close">&times;</span>
                 <div id="content_log">
                 <?php
-                    $stmt= $pdo->prepare("SELECT r.fecha_ini_reserva, r.fecha_fin_reserva, r.nom_cliente_reserva , r.num_personas_reserva, 
+                ?>
+                <form method='post'>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre de la Terraza...">
+                    <input type='number' name='mesa' id='mesa' placeholder="Mesa...">
+                    <input type='number' name='sillas' id='sillas' placeholder="Sillas...">
+                    <input type='date' name='fecha' id='fecha'>
+                    <input type='time' name='hora_entrada' id='hora_entrada'>
+                    <input type='time' name='hora_salida' id='hora_salida'>
+                    <input type="submit" name="enviar" value="FILTRAR">
+                </form>
+                <?php
+                    $stmt= $pdo->prepare("SELECT r.fecha_reserva, r.fecha_ini_reserva, r.fecha_fin_reserva, r.nom_cliente_reserva , r.num_personas_reserva, 
                     l.nom_lugar, m.numero_mesa, m.num_sillas_mesa FROM tbl_reserva r
                     INNER JOIN tbl_mesa m ON r.id_mesa = m.id_mesa
                     INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
@@ -82,6 +93,8 @@
                     foreach($sentencia as $row){
                         if(!isset($row['fecha_fin_reserva'])){
                             echo "Cliente: ".$row['nom_cliente_reserva']."<br>";
+                            
+                            
                             echo "Entrada: ".$row['fecha_ini_reserva']."<br>";
                             echo "Salida: Aún no ha salido<br>";
                             echo "Num personas: ".$row['num_personas_reserva']."<br>";
@@ -90,6 +103,7 @@
                             echo "Sillas: ".$row['num_sillas_mesa']."<br>";
                         }else{
                             echo "Cliente: ".$row['nom_cliente_reserva']."<br>";
+                            echo "Día: ".$row['fecha_reserva'][8].$row['fecha_reserva'][9].$row['fecha_reserva'][7].$row['fecha_reserva'][5].$row['fecha_reserva'][6].$row['fecha_reserva'][4].$row['fecha_reserva'][0].$row['fecha_reserva'][1].$row['fecha_reserva'][2].$row['fecha_reserva'][3]."<br>";
                             echo "Entrada: ".$row['fecha_ini_reserva']."<br>";
                             echo "Salida: ".$row['fecha_fin_reserva']."<br>";
                             echo "Num personas: ".$row['num_personas_reserva']."<br>";
