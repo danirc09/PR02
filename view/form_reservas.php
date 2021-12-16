@@ -1,13 +1,11 @@
 <?php
 include '../services/connection.php';
 include '../services/reserva.php';
-session_start();
-if (!isset($_SESSION['id_mesa'])&&!isset($_SESSION['id_pag'])) {
-    $id_pag = $_SESSION['id_pag'];
-    header('Location: reservas.php?id='.$id_pag.'');
+if (!isset($_GET['id'])&&!isset($_GET['id_pag'])) {
+    header('Location: ./inicio.php');
 }else{
-    $id_pag = $_SESSION['id_pag'];
-    $id_mesa = $_SESSION['id_mesa'];
+    $id_mesa = $_GET['id'];
+    $id_pag = $_GET['id_pag'];
 }
 ?>
 <!DOCTYPE html>
@@ -46,13 +44,13 @@ if (!isset($_SESSION['id_mesa'])&&!isset($_SESSION['id_pag'])) {
                         <option value="21:00:00">21:00</option>
                         <option value="22:00:00">22:00</option>
                     </select><br>
-                    <input type="submit" name="reservar" value="RESERVAR">
+                    <input class="input_resto" type="submit" name="reservar" value="RESERVAR">
                 </form>
                 <div id="mensaje"><?php
                     if(isset($_GET["error"])){
                     ?>
                         <script>
-                            document.getElementById('mensaje').innerHTML = "<p>Esta hora ya está reservada</p>";
+                            document.getElementById('mensaje').innerHTML = "<p><b>Esta hora ya está reservada</b></p>";
                             document.getElementById('mensaje').style.color = "red";
                         </script>
                     <?php
@@ -63,7 +61,7 @@ if (!isset($_SESSION['id_mesa'])&&!isset($_SESSION['id_pag'])) {
                     if(isset($_GET["error2"])){
                     ?>
                         <script>
-                            document.getElementById('mensaje2').innerHTML = "<p>Esta hora ya ha pasado</p>";
+                            document.getElementById('mensaje2').innerHTML = "<p><b>Esta hora ya ha pasado</b></p>";
                             document.getElementById('mensaje2').style.color = "red";
                         </script>
                     <?php

@@ -28,7 +28,7 @@
             <?php
             }
             ?></div>
-            <input  class="btn third" type="submit" value="INICIAR SESION">
+            <input  class="btn third input_login" type="submit" value="INICIAR SESION">
         </form>
     </div>
 </body>

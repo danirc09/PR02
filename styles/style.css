@@ -148,7 +148,7 @@ input[type='time']:hover {
     transition: 0.3s;
 }
 
-input[type=submit] {
+.input_login {
     width: 100%;
     background-color: #f1c194;
     margin: 8px 0;
@@ -156,9 +156,10 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    height: 40px;
 }
 
-input[type=submit]:hover {
+.input_login:hover {
     background-color: #caa37e;
     transition: 0.3s;
 }
@@ -326,11 +327,11 @@ input[type=submit]:hover {
 .contenido {
     color: white;
     width: 85%;
-    height: 400px;
     background-color: #c09164;
-    display: inline-block;
-    padding-left: 19%;
-    padding-top: 3%;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    justify-content: center;
 }
 
 .div_contenido {
@@ -438,23 +439,7 @@ input[type=submit]:hover {
     background-color: rgb(75, 206, 23);
 }*/
 
-.img_terraza {
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-.img_comedor {
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-
-.img_sala {
+.img_inicio {
     width: 200px;
     height: 200px;
     background-size: cover;
@@ -630,7 +615,7 @@ footer {
     appearance: none;
     background-color: transparent;
     border: 2px solid #ffff;
-    border-radius: 0.6em;
+    border-radius: 0.2em;
     color: #ffff;
     cursor: pointer;
     display: -webkit-box;
@@ -643,8 +628,6 @@ footer {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1;
-    margin: 20px;
-    padding: 1.2em 2.8em;
     text-decoration: none;
     text-align: center;
     text-transform: uppercase;
@@ -683,7 +666,7 @@ footer {
 
 .contenido_reservas {
     padding: 10px;
-    font-size: 22px;
+    font-size: 20px;
     background-color: #ac7c4f;
     width: 19%;
     margin: 0.5%;
@@ -760,4 +743,50 @@ select:hover {
 
 .icon_reserva {
     width: 25px;
+}
+
+.input_resto {
+    background-color: #c09164;
+    width: 15%;
+    height: 48px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    border: 2px solid #5f3e20;
+    font-size: 14px;
+}
+
+.input_resto:hover {
+    color: white;
+    background-color: #5f3e20;
+}
+
+.contenido_historial {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #ac7c4f;
+    width: 19%;
+    margin: 0.5%;
+    border-radius: 5px;
+    float: left;
+}
+
+.historial {
+    color: white;
+    width: 85%;
+    background-color: #c09164;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    justify-content: center;
+}
+
+.form_historial {
+    width: 100%;
+    justify-content: center;
+}
+
+.result_form {
+    width: 100%;
 }

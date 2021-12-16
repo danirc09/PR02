@@ -37,10 +37,10 @@ if($id == 1){
     <?php
             echo "<div class='flex'>";
             echo "<div class='reservas'>";
-                $stmt= $pdo->prepare("SELECT l.img_lugar, l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
+                $stmt= $pdo->prepare("SELECT  tl.id_tipo_lugar, l.img_lugar, l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
                 INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
                 INNER JOIN tbl_tipo_lugar tl ON l.fk_id_tipo_lugar = tl.id_tipo_lugar
-                WHERE tl.tipo_lugar = 'Terraza' 
+                WHERE tl.tipo_lugar = 'Terraza' AND m.estado_mesa = 1
                 ORDER BY l.nom_lugar ASC");
                 $stmt->execute();
 
@@ -50,7 +50,7 @@ if($id == 1){
                     echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='../processes/reserva.php?id={$row['id_mesa']}&id_pag=1&lugar=Terraza'>RESERVAR</a>";
+                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -77,20 +77,20 @@ if($id == 1){
     <?php
             echo "<div class='flex'>";
             echo "<div class='reservas'>";
-                $stmt= $pdo->prepare("SELECT l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
+                $stmt= $pdo->prepare("SELECT  tl.id_tipo_lugar, l.img_lugar, l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
                 INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
                 INNER JOIN tbl_tipo_lugar tl ON l.fk_id_tipo_lugar = tl.id_tipo_lugar
-                WHERE tl.tipo_lugar = 'Comedor' 
+                WHERE tl.tipo_lugar = 'Comedor' AND m.estado_mesa = 1
                 ORDER BY l.nom_lugar ASC");
                 $stmt->execute();
 
                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach($sentencia as $row){
                     echo "<div class='contenido_reservas'>";
-                    echo "<b>".$row['nom_lugar']."</b><br>";
+                    echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='../processes/reserva.php?id={$row['id_mesa']}&id_pag=1&lugar=Terraza'>RESERVAR</a>";
+                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -117,20 +117,20 @@ if($id == 1){
     <?php
             echo "<div class='flex'>";
             echo "<div class='reservas'>";
-                $stmt= $pdo->prepare("SELECT l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
+                $stmt= $pdo->prepare("SELECT tl.id_tipo_lugar, l.img_lugar, l.nom_lugar, m.id_mesa, m.numero_mesa, m.estado_mesa, m.num_sillas_mesa FROM tbl_mesa m
                 INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
                 INNER JOIN tbl_tipo_lugar tl ON l.fk_id_tipo_lugar = tl.id_tipo_lugar
-                WHERE tl.tipo_lugar = 'Sala Privada' 
+                WHERE tl.tipo_lugar = 'Sala Privada' AND m.estado_mesa = 1
                 ORDER BY l.nom_lugar ASC");
                 $stmt->execute();
 
                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach($sentencia as $row){
                     echo "<div class='contenido_reservas'>";
-                    echo "<b>".$row['nom_lugar']."</b><br>";
+                    echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='../processes/reserva.php?id={$row['id_mesa']}&id_pag=1&lugar=Terraza'>RESERVAR</a>";
+                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";
