@@ -15,15 +15,11 @@
         <?php
             include '../services/connection.php';
             include '../services/reserva.php';
-            session_start();
-            if (!isset($_SESSION['nom_user'])) {
-            header('Location: login.php');
-            }
         ?>
     <div class="row2" id="section-1">
         <div class="usuario column-1">
         <ul class="padding-lat">
-        <b><a class="btn-logout">Bienvenido, <?php echo $_SESSION['nom_user'];?></a></b>
+        <b><a class="btn-logout">HISTORIAL</a></b>
         </ul>
         </div>
         <div class="column-2 titulo2">
@@ -36,24 +32,48 @@
         </div>
     </div>
     <div class="flex">
-        <div class="menu">
-            <h1>HISTORIAL</h1>
-        </div> 
-    </div>
-    <div class="flex">
         <div class="historial">
             <div class="form_historial">
                 <form method='post'>
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre de la Terraza...">
-                    <input type='number' name='mesa' id='mesa' placeholder="Mesa...">
-                    <input type='number' name='sillas' id='sillas' placeholder="Sillas...">
-                    <input type='date' name='fecha' id='fecha'>
-                    <input type='time' name='hora_entrada' id='hora_entrada'>
-                    <input type='time' name='hora_salida' id='hora_salida'>
-                    <input class="input_resto" type="submit" name="enviar" value="FILTRAR">
+                    <input type="text" name="nom_cliente_reserva" id="nom_cliente_reserva" placeholder="Nombre cliente...">
+                    <input type="date" name="fecha_reserva" id="fecha_reserva" min="<?php echo date("Y-m-d"); ?>">
+                    <select name="fecha_ini_reserva" id="fecha_ini_reserva" required>
+                        <option value="%">---</option>
+                        <option value="12:00:00">12:00</option>
+                        <option value="13:00:00">13:00</option>
+                        <option value="14:00:00">14:00</option>
+                        <option value="15:00:00">15:00</option>
+                        <option value="16:00:00">16:00</option>
+                        <option value="17:00:00">17:00</option>
+                        <option value="18:00:00">18:00</option>
+                        <option value="19:00:00">19:00</option>
+                        <option value="20:00:00">20:00</option>
+                        <option value="21:00:00">21:00</option>
+                        <option value="22:00:00">22:00</option>
+                    </select>
+                    <select name="fecha_fin_reserva" id="fecha_fin_reserva" required>
+                        <option value="%">---</option>
+                        <option value="12:00:00">12:00</option>
+                        <option value="13:00:00">13:00</option>
+                        <option value="14:00:00">14:00</option>
+                        <option value="15:00:00">15:00</option>
+                        <option value="16:00:00">16:00</option>
+                        <option value="17:00:00">17:00</option>
+                        <option value="18:00:00">18:00</option>
+                        <option value="19:00:00">19:00</option>
+                        <option value="20:00:00">20:00</option>
+                        <option value="21:00:00">21:00</option>
+                        <option value="22:00:00">22:00</option>
+                    </select>
+                    <input type='text' name='nom_lugar' id='nom_lugar' placeholder="Lugar...">
+                    <input type='number' name='numero_mesa' id='numero_mesa' placeholder="Mesa...">
+                    <center><input class="input_resto" type="submit" name="enviar" value="FILTRAR"></center>
                 </form>
             </div>
-            <div class="result_form">
+            <?php
+            if(!isset($_POST['enviar'])){
+                ?>
+                <div class="result_form">
                 <?php
                     $stmt= $pdo->prepare("SELECT r.fecha_reserva, r.fecha_ini_reserva, r.fecha_fin_reserva, r.nom_cliente_reserva, 
                     m.numero_mesa, l.nom_lugar 
@@ -65,16 +85,55 @@
                     $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach($sentencia as $row){
                         echo "<div class='contenido_historial'>";
-                        echo "Nombre reserva: ".$row['nom_cliente_reserva']."<br>";
-                        echo "Hora de entrada: ".$row['fecha_ini_reserva']."<br>";
-                        echo "Hora de salida: ".$row['fecha_fin_reserva']."<br>";
-                        echo "Lugar: ".$row['nom_lugar']."<br>";
-                        echo "Mesa: ".$row['numero_mesa']."<br>";
+                        echo "<b>Nombre reserva: </b>".$row['nom_cliente_reserva']."<br>";
+                        echo "<b>Día reserva: </b>".$row['fecha_reserva']."<br>";
+                        echo "<b>Hora de entrada: </b>".$row['fecha_ini_reserva']."<br>";
+                        echo "<b>Hora de salida: </b>".$row['fecha_fin_reserva']."<br>";
+                        echo "<b>Lugar: </b>".$row['nom_lugar']."<br>";
+                        echo "<b>Mesa: </b>".$row['numero_mesa']."<br>";
                         echo "</div>";
                     }
                     ?>
                 </div>
             </div>
+            <?php
+            }else{
+                ?>
+                <div class="result_form">
+                <?php
+                    $f_reserva = $_POST['fecha_reserva'];
+                    $f_in_reserva = $_POST['fecha_ini_reserva'];
+                    $f_fin_reserva = $_POST['fecha_fin_reserva'];
+                    $n_cliente = $_POST['nom_cliente_reserva'];
+                    $n_mesa = $_POST['numero_mesa'];
+                    $n_lugar = $_POST['nom_lugar'];
+                    $stmt= $pdo->prepare("SELECT r.fecha_reserva, r.fecha_ini_reserva, r.fecha_fin_reserva, r.nom_cliente_reserva, 
+                    m.numero_mesa, l.nom_lugar 
+                    FROM tbl_reserva r
+                    INNER JOIN tbl_mesa m ON r.id_mesa = m.id_mesa
+                    INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
+                    WHERE r.fecha_reserva LIKE '%$f_reserva%' AND r.fecha_ini_reserva LIKE '%$f_in_reserva%' AND r.fecha_fin_reserva LIKE '%$f_fin_reserva%' 
+                    AND r.nom_cliente_reserva LIKE '%$n_cliente%' AND m.numero_mesa LIKE '%$n_mesa%' AND l.nom_lugar LIKE '%$n_lugar%'
+                    ORDER BY r.fecha_reserva DESC");
+                    $stmt->execute();
+                    $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($sentencia as $row){
+                        echo "<div class='contenido_historial'>";
+                        echo "<b>Nombre reserva: </b>".$row['nom_cliente_reserva']."<br>";
+                        echo "<b>Día reserva: </b>".$row['fecha_reserva']."<br>";
+                        echo "<b>Hora de entrada: </b>".$row['fecha_ini_reserva']."<br>";
+                        echo "<b>Hora de salida: </b>".$row['fecha_fin_reserva']."<br>";
+                        echo "<b>Lugar: </b>".$row['nom_lugar']."<br>";
+                        echo "<b>Mesa: </b>".$row['numero_mesa']."<br>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+            
     </div>
 </body>
 

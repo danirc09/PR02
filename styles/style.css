@@ -747,6 +747,7 @@ select:hover {
 
 .input_resto {
     background-color: #c09164;
+    color: #f1c194;
     width: 15%;
     height: 48px;
     padding: 12px 20px;
@@ -758,7 +759,6 @@ select:hover {
 }
 
 .input_resto:hover {
-    color: white;
     background-color: #5f3e20;
 }
 
@@ -766,10 +766,21 @@ select:hover {
     padding: 10px;
     font-size: 20px;
     background-color: #ac7c4f;
-    width: 19%;
+    width: 24%;
     margin: 0.5%;
     border-radius: 5px;
     float: left;
+}
+
+.contenido_historial:hover {
+    box-shadow: 0px 0px 20px rgba(27, 27, 27, 0.699);
+    border-radius: 5px;
+    transform: scale(1.05);
+    transition: transform .3s;
+}
+
+.contenido_historial b {
+    color: black;
 }
 
 .historial {
@@ -780,13 +791,27 @@ select:hover {
     align-items: center;
     padding: 3%;
     justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5%;
+    border-radius: 5px;
 }
 
 .form_historial {
     width: 100%;
-    justify-content: center;
 }
 
 .result_form {
     width: 100%;
+}
+
+.contenido_admin {
+    color: white;
+    width: 85%;
+    background-color: #c09164;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    justify-content: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
