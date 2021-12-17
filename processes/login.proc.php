@@ -36,6 +36,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             }else{
                 session_start();
                 $_SESSION['nom_user']=$nom;
+                $_SESSION['correo']=$email;
                 header("location: ../view/zona_admin.php");
             }
         }else {

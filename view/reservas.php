@@ -50,7 +50,7 @@ if($id == 1){
                     echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
+                    echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -90,7 +90,7 @@ if($id == 1){
                     echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
+                    echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -130,7 +130,7 @@ if($id == 1){
                     echo "<b>".$row['nom_lugar']." <img class='icon_reserva' src='../img/{$row['img_lugar']}'></img></b><br>";
                     echo "Mesa: ".$row['numero_mesa']."<br>";
                     echo "Sillas: ".$row['num_sillas_mesa']."<br>";
-                        echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
+                    echo "<a href='./form_reservas.php?id={$row['id_mesa']}&id_pag={$row['id_tipo_lugar']}'>RESERVAR</a>";
                     echo "</div>";
                 }
                 echo "</div>";

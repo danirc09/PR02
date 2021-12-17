@@ -28,7 +28,7 @@ if (!isset($_GET['id'])&&!isset($_GET['id_pag'])) {
                     <h1>RESERVAR</h1>
                     <input type="hidden"name="id_mesa" value="<?php echo $id_mesa;?>">
                     <input type="hidden"name="id_pag" value="<?php echo $id_pag;?>">
-                    <input type="text" name="n_reserva" placeholder="Nombre reserva..." required><br>
+                    <div class="tam"><input type="text" name="n_reserva" placeholder="Nombre reserva..." required><br>
                     <input type="date" name="txtDate" id="txtDate" min="<?php echo date("Y-m-d"); ?>" required><br>
                     <select name="hora" id="hora" required>
                         <option value="%">---</option>
@@ -44,7 +44,7 @@ if (!isset($_GET['id'])&&!isset($_GET['id_pag'])) {
                         <option value="21:00:00">21:00</option>
                         <option value="22:00:00">22:00</option>
                     </select><br>
-                    <input class="input_resto" type="submit" name="reservar" value="RESERVAR">
+                    <input type="submit" name="reservar" value="RESERVAR"></div>
                 </form>
                 <div id="mensaje"><?php
                     if(isset($_GET["error"])){

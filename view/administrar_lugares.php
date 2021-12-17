@@ -16,14 +16,14 @@
             include '../services/connection.php';
             include '../services/reserva.php';
             session_start();
-            if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
+            if (!isset($_SESSION['nom_user'])) {
             header('Location: login.php');
             }
         ?>
     <div class="row2" id="section-1">
         <div class="usuario column-1">
         <ul class="padding-lat">
-        <b><a class="btn-logout">Bienvenido, <?php echo $_SESSION['nom_user'];?></a></b>
+        <b><a class="btn-logout">ADMINISTRAR LUGARES</a></b>
         </ul>
         </div>
         <div class="column-2 titulo2">
@@ -31,7 +31,7 @@
         </div>
         <div class="logout column-1">
             <ul class="padding-lat">
-            <b><a style="text-decoration:none" class="btn-logout" href="../processes/logout.proc.php">Logout</a></b>
+            <b><a style="text-decoration:none" class="btn-logout" href="./zona_admin.php">INICIO</a></b>
             </ul>
         </div>
     </div>
@@ -42,8 +42,6 @@
     </div>
     <div class="flex">
         <div class="contenido_admin">
-            <a href="./administrar_usuarios.php">ADMINISTRAR USUARIOS</a><br><br>
-            <a href="./administrar_lugares.php">ADMINISTRAR LUGARES</a>
         </div>        
     </div>
 </body>
