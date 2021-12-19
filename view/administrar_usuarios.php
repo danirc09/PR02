@@ -43,7 +43,7 @@
     </div>
     <div class="flex">
         <div class="contenido_admin_users">
-            
+            <a href="./crear_user.php" class="">Crear Usuario</a>
             <?php
                 $stmt = $pdo->prepare("SELECT u.*, p.perfil_usuario FROM tbl_usuario u
                 INNER JOIN tbl_perfil p ON u.id_perfil_usuario = p.id
@@ -53,12 +53,11 @@
                     try{
                         if(!$sentencia == ""){
                             ?>
-                            <a href="./crear_user.php" class="">Crear Usuario</a>
                             <div id="mensaje"><?php
                                     if(isset($_GET["error"])){
                                 ?>
                                     <script>
-                                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido eliminar el evento</b></p>";
+                                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido eliminar el usuario</b></p>";
                                         document.getElementById('mensaje').style.color = "red";
                                     </script>
                                 <?php
@@ -95,7 +94,9 @@
                                                 echo "<td>{$row["correo_usuario"]}</td>";
                                                 echo "<td>{$row["perfil_usuario"]}</td>";
                                                 echo "<td><a href='./modif_user.php?id={$row['id']}'>Modificar</a></td>";
-                                                echo "<td><a href='#'><del>Eliminar</del></a></td>";
+                                                echo "<td><a href='#'>
+                                                <abbr title='No puedes eliminar tu propio usuario'><del>Eliminar</del></abbr>
+                                                </a></td>";
                                                 
                                                 echo "</tr>";
                                             }else{

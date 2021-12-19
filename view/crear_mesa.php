@@ -24,7 +24,7 @@
     <div class="row2" id="section-1">
         <div class="usuario column-1">
         <ul class="padding-lat">
-        <b><a class="btn-logout">ADMINISTRAR USUARIOS</a></b>
+        <b><a class="btn-logout">ADMINISTRAR LUGARES</a></b>
         </ul>
         </div>
         <div class="column-2 titulo2">
@@ -43,31 +43,30 @@
     </div>
     <div class="flex">
         <div class="contenido_admin_users">
-            <form action="../processes/modif_user.proc.php" method="post">
-                <center><input type="text" name="nombre" id="nombre" placeholder="nombre..." required></center>
-                <center><input type="text" name="apellido" id="apellido" placeholder="apellido..." required></center>
-                <center><input type="email" name="email" id="email" placeholder="email..." required></center>
-                <center><input type="password" name="password" id="password" placeholder="contraseña..." required></center>
+            <form action="../processes/crear_mesa.proc.php" method="post">
+                <center><input type="number" name="numero" id="numero" placeholder="numero de mesa..." required></center>
                 <center><select name="perfil" id="perfil" required>
                             <option value="%">---</option>
                             <?php
-                                $stmt = $pdo->prepare("SELECT * FROM tbl_perfil");
+                                $stmt = $pdo->prepare("SELECT * FROM tbl_lugar");
                                 $stmt->execute();
                                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                                     foreach($sentencia as $row){
                                         ?>
-                                        <option value="<?php echo $row['id']?>"><?php echo $row['perfil_usuario']?></option>
+                                        <option value="<?php echo $row['id_lugar']?>"><?php echo $row['nom_lugar']?></option>
                                         <?php
                                     }
                                 ?>
                         </select></center>
+                        <input type="hidden" name="estado" id="estado" value="1">
+                <center><input type="number" name="sillas" id="sillas" placeholder="sillas..." required></center>
                 <center><input type="submit" name="enviar" value="CREAR" class="btn btn-success"></center>
             </form>
             <div id="mensaje"><?php
                     if(isset($_GET["error"])){
                     ?>
                         <script>
-                            document.getElementById('mensaje').innerHTML = "<p><b>Este usuario ya existe</b></p>";
+                            document.getElementById('mensaje').innerHTML = "<p><b>Esta mesa ya existe</b></p>";
                             document.getElementById('mensaje').style.color = "red";
                         </script>
                     <?php

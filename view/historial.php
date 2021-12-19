@@ -86,7 +86,7 @@
                     $fecha_actual = getdate();
                     $dia_actual = $fecha_actual['year']."-".$fecha_actual['mon']."-".$fecha_actual['mday'];
                     foreach($sentencia as $row){
-                        if($row['fecha_reserva'] >= $dia_actual){
+                        if($row['fecha_reserva'] > $dia_actual){
                             echo "<div class='contenido_historial'>";
                             echo "<b>Nombre reserva: </b>".$row['nom_cliente_reserva']."<br>";
                             echo "<b>Día reserva: </b>".$row['fecha_reserva']."<br>";
@@ -135,7 +135,7 @@
                     $fecha_actual = getdate();
                     $dia_actual = $fecha_actual['year']."-".$fecha_actual['mon']."-".$fecha_actual['mday'];
                     foreach($sentencia as $row){
-                        if($row['fecha_reserva'] >= $dia_actual){
+                        if($row['fecha_reserva'] > $dia_actual){
                             echo "<div class='contenido_historial'>";
                             echo "<b>Nombre reserva: </b>".$row['nom_cliente_reserva']."<br>";
                             echo "<b>Día reserva: </b>".$row['fecha_reserva']."<br>";

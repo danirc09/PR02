@@ -42,6 +42,136 @@
     </div>
     <div class="flex">
         <div class="contenido_admin">
+            <div>
+            <a href="./crear_lugar.php" class="">Crear Lugar</a>
+            <a href="./crear_mesa.php" class="">Crear Mesa</a><br>
+            </div>
+            <h2>LUGARES</h2>
+            <?php
+                $stmt = $pdo->prepare("SELECT tl.*, l.* FROM tbl_tipo_lugar tl
+                INNER JOIN tbl_lugar l ON tl.id_tipo_lugar = l.fk_id_tipo_lugar
+                ORDER BY l.nom_lugar ASC");
+                $stmt->execute();
+                $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                    try{
+                        if(!$sentencia == ""){
+                            ?>
+                            <div id="mensaje"><?php
+                                    if(isset($_GET["error"])){
+                                ?>
+                                    <script>
+                                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido eliminar el lugar</b></p>";
+                                        document.getElementById('mensaje').style.color = "red";
+                                    </script>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                                <table cellspacing = '20px' class="contenido_tbl_users">
+                                    <tr class="contenido_tbl_users">
+                                        <td>
+                                            <h3>Nombre</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Tipo Lugar</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Modificar</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Eliminar</h3>
+                                        </td>
+                                    </tr>
+                                        <?php
+                                        foreach($sentencia as $row){ 
+                                                echo "<tr class='contenido_tbl_users'>";
+                                                echo "<td>{$row["nom_lugar"]}</td>";
+                                                echo "<td>{$row["tipo_lugar"]}</td>";
+                                                echo "<td><a href='./modif_lugares.php?id={$row['id_lugar']}'>Modificar</a></td>";
+                                                echo "<td><a href='../processes/elim_lugar.proc.php?id={$row['id_lugar']}'>Eliminar</a></td>";
+                                                echo "</tr>";
+                                        }
+                                        ?>
+                                </table>
+                            <?php
+                        }else{
+                            echo "No hay datos";
+                        }
+                    }catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                ?>
+                <h2>MESAS</h2>
+                <?php
+                $stmt = $pdo->prepare("SELECT m.*, l.* FROM tbl_mesa m
+                INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
+                ORDER BY m.numero_mesa AND l.nom_lugar ASC");
+                $stmt->execute();
+                $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                    try{
+                        if(!$sentencia == ""){
+                            ?>
+                            <div id="mensaje"><?php
+                                    if(isset($_GET["error2"])){
+                                ?>
+                                    <script>
+                                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido eliminar la mesa</b></p>";
+                                        document.getElementById('mensaje').style.color = "red";
+                                    </script>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                                <table cellspacing = '20px' class="contenido_tbl_users">
+                                    <tr class="contenido_tbl_users">
+                                        <td>
+                                            <h3>Mesa</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Lugar</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Estado</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Sillas</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Modificar</h3>
+                                        </td>
+                                        <td>
+                                            <h3>Eliminar</h3>
+                                        </td>
+                                    </tr>
+                                        <?php
+                                        foreach($sentencia as $row){ 
+                                                echo "<tr class='contenido_tbl_users'>";
+                                                echo "<td>{$row["numero_mesa"]}</td>";
+                                                echo "<td>{$row["nom_lugar"]}</td>";
+                                                if($row["estado_mesa"] == 0){
+                                                    echo "<td>No isponible</td>";
+                                                }elseif($row["estado_mesa"] == 1){
+                                                    echo "<td>Disponible</td>";
+                                                }else{
+                                                    echo "<td>Mantenimiento</td>";
+                                                }
+                                                echo "<td>{$row["num_sillas_mesa"]}</td>";
+                                                echo "<td><a href='./modif_mesa.php?id={$row['id_mesa']}'>Modificar</a></td>";
+                                                echo "<td><a href='../processes/elim_mesa.proc.php?id={$row['id_mesa']}'>Eliminar</a></td>";
+                                                echo "</tr>";
+                                        }
+                                        ?>
+                                </table>
+                            <?php
+                        }else{
+                            echo "No hay datos";
+                        }
+                    }catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                ?>
+            </div>
+
         </div>        
     </div>
 </body>

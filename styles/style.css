@@ -16,6 +16,7 @@ body {
 #portada {
     background-image: url("https://s1.1zoom.me/big0/706/350861-admin.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -878,6 +879,7 @@ select:hover {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     flex-direction: column;
+    margin-bottom: 5%;
 }
 
 .contenido_admin a {
@@ -955,4 +957,35 @@ select {
     width: 16%;
     float: left;
     margin-left: 5px;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+.custom-file-input {
+    background-color: #c09164;
+    color: #f1c194;
+    width: 100%;
+    height: 48px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    border: 2px solid #5f3e20;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.custom-file-input:hover {
+    background-color: #5f3e20;
+    transition: 0.3s;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+input[type='file'] {
+    display: none;
 }

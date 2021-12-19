@@ -19,13 +19,12 @@
             if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
             header('Location: login.php');
             }
-            $correo = $_SESSION['correo'];
-            $id_usr = $_GET['id'];
+            $id_mesa = $_GET['id'];
         ?>
     <div class="row2" id="section-1">
         <div class="usuario column-1">
         <ul class="padding-lat">
-        <b><a class="btn-logout">ADMINISTRAR USUARIOS</a></b>
+        <b><a class="btn-logout">ADMINISTRAR LUGARES</a></b>
         </ul>
         </div>
         <div class="column-2 titulo2">
@@ -45,18 +44,25 @@
     <div class="flex">
         <div class="contenido_admin_users">
             <?php
-                $stmt = $pdo->prepare("SELECT * FROM tbl_usuario
-                WHERE id = '{$id_usr}'");
+                $stmt = $pdo->prepare("SELECT m.*, l.nom_lugar FROM tbl_mesa m
+                INNER JOIN tbl_lugar l ON m.id_lugar = l.id_lugar
+                WHERE id_mesa = '{$id_mesa}'");
                 $stmt->execute();
                 $sentencia=$stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach($sentencia as $row){
                     ?>
-                    <form action="../processes/modif_user.proc.php" method="post">
-                            <input type="hidden" name="id_usr" value="<?php echo $id_usr?>">
-                    <center><input type="text" name="nombre" id="nombre" value="<?php echo $row['nom_usuario']?>" required></center>
-                    <center><input type="text" name="apellido" id="apellido" value="<?php echo $row['apellido_usuario']?>" required></center>
-                    <center><input type="email" name="email" id="email" value="<?php echo $row['correo_usuario']?>" required></center>
-                    <center><input type="password" name="password" id="password" placeholder="Introduzca la contraseña..." required></center>
+                    <form action="../processes/modif_mesa.proc.php" method="post">
+                            <?php echo $row['nom_lugar']?><br>
+                            <?php echo "Mesa ".$row['numero_mesa']?>
+                            <input type="hidden" name="id_mesa" value="<?php echo $id_mesa?>">
+                            <input type="hidden" name="id_lugar" value="<?php echo $id_mesa?>">
+                    <center><select name="estado" id="estado" required>
+                            <option value="%">---</option>
+                            <option value="0">No disponible</option>
+                            <option value="1">Disponible</option>
+                            <option value="2">Mantenimiento</option>
+                        </select></center>
+                    <center><input type="number" name="sillas" id="sillas" value="<?php echo $row['num_sillas_mesa']?>" required></center>
                     <center><input type="submit" name="enviar" value="ENVIAR" class="btn btn-success"></center>
             </form>
                     <?php
@@ -66,7 +72,7 @@
                 if(isset($_GET["error"])){
                 ?>
                     <script>
-                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido modificar el usuario</b></p>";
+                        document.getElementById('mensaje').innerHTML = "<p><b>No se ha podido modificar el lugar</b></p>";
                         document.getElementById('mensaje').style.color = "red";
                     </script>
                 <?php
