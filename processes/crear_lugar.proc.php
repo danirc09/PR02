@@ -4,7 +4,14 @@ include '../services/reserva.php';
 
 $nombre=$_POST['nombre'];
 $perfil=$_POST['perfil'];
-$imagen=$_POST['imagen'];
+
+foreach ($_FILES['imagen']["error"] as $key => $error) {
+    if($error == UPLOAD_ERR_OK){ 
+        $tmp_name = $_FILES['imagen']["tmp_name"][$key];
+        $name = basename($_FILES['imagen']["name"][$key]);
+        move_uploaded_file($tmp_name, "../img/$name");
+    }
+}
 
 try{
     $stmt = $pdo->prepare("SELECT * FROM tbl_lugar  
@@ -24,10 +31,10 @@ if(!$num_rows == 1){
         VALUES (?, ?, ?)");
         $stmt->bindParam(1, $nombre);
         $stmt->bindParam(2, $perfil);
-        $stmt->bindParam(3, $imagen);
+        $stmt->bindParam(3, $name);
         $stmt->execute();
 
-        header('Location: ../view/administrar_lugares.php');
+        header('Location: ../view/administrar_lugares.php?exito=exito');
         $pdo->commit();
     }catch (PDOException $e) {
         $pdo->rollBack();

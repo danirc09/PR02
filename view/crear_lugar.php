@@ -43,7 +43,7 @@
     </div>
     <div class="flex">
         <div class="contenido_admin_users">
-            <form action="" method="post">
+            <form enctype="multipart/form-data" action="../processes/crear_lugar.proc.php" method="post">
                 <center><input type="text" name="nombre" id="nombre" placeholder="nombre..." required></center>
                 <center><select name="perfil" id="perfil" required>
                             <option value="%">---</option>
@@ -58,7 +58,7 @@
                                     }
                                 ?>
                         </select></center>
-                <center><label class="custom-file-input"><input type="file" name="imagen" id="imagen" class="custom-file-input" required>Subir una imagen</label></center>
+                <center><label class="custom-file-input"><input type="file" name="imagen[]" id="imagen" class="custom-file-input" required>Subir una imagen</label></center>
                 <center><input type="submit" name="enviar" value="CREAR" class="btn btn-success"></center>
             </form>
             <div id="mensaje"><?php

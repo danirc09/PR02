@@ -67,6 +67,16 @@
                                 }
                                 ?>
                             </div>
+                            <div id="exito"><?php
+                                    if(isset($_GET["exito"])){
+                                ?>
+                                    <script>
+                                        alert('Debes crear mesas asociadas a este lugar para que esté activo por completo.');
+                                    </script>
+                                <?php
+                                }
+                                ?>
+                            </div>
                                 <table cellspacing = '20px' class="contenido_tbl_users">
                                     <tr class="contenido_tbl_users">
                                         <td>
