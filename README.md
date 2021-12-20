@@ -36,6 +36,14 @@ _Una vez hecho esto ya tendrías el proyecto en local para poder ejecutarlo y mo
 _Subido a 000webhost_
 _https://abpdm.000webhostapp.com/_
 
+### Acceso Login 📋
+
+```
+Usuario | Contraseña
+Camarero: mdiaz@experia.com | qweQWE123
+Admin: druano@admin.com | qweQWE123
+```
+
 ### Analice las pruebas end-to-end 🔩
 
 _Explica que verifican estas pruebas y por qué_
