@@ -9,6 +9,11 @@ if (!isset($_GET['id'])&&!isset($_GET['id_pag'])) {
     $id_mesa = $_GET['id'];
     $id_pag = $_GET['id_pag'];
 }
+session_start();
+            if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
+            header('Location: login.php');
+            ob_end_flush();
+            }
 ?>
 <!DOCTYPE html>
 <html lang="en">

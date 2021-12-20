@@ -48,7 +48,7 @@ ob_start();
     <div class="flex">
         <div class="contenido_admin_users">
             <form action="../processes/crear_mesa.proc.php" method="post">
-                <center><input type="number" name="numero" id="numero" placeholder="numero de mesa..." required></center>
+                <center><input type="number" name="numero" id="numero" min="1" placeholder="numero de mesa..." required></center>
                 <center><select name="perfil" id="perfil" required>
                             <option value="%">---</option>
                             <?php

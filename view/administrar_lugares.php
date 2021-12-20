@@ -102,7 +102,7 @@ ob_start();
                                                 echo "<td>{$row["nom_lugar"]}</td>";
                                                 echo "<td>{$row["tipo_lugar"]}</td>";
                                                 echo "<td><a href='./modif_lugares.php?id={$row['id_lugar']}'>Modificar</a></td>";
-                                                echo "<td><a href='../processes/elim_lugar.proc.php?id={$row['id_lugar']}'>Eliminar</a></td>";
+                                                echo "<td><button onclick='alerta({$row['id_lugar']});'>Eliminar</button></td>";
                                                 echo "</tr>";
                                         }
                                         ?>

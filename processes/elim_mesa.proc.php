@@ -9,9 +9,12 @@ try{
     $pdo->beginTransaction();
     $stmt = $pdo->prepare("DELETE FROM tbl_mesa WHERE id_mesa=?");
     $stmt->bindParam(1, $id);
-    $stmt->execute();
+    if($stmt->execute()){
+        header('Location: ../view/administrar_lugares.php');
+    }else{
+        header('Location: ../view/administrar_lugares.php?error2');
+    }     
     
-    header('Location: ../view/administrar_lugares.php');
     ob_end_flush();
     $pdo->commit();
 }catch (PDOException $e) {

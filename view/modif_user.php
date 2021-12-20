@@ -60,7 +60,6 @@ ob_start();
                     <center><input type="text" name="nombre" id="nombre" value="<?php echo $row['nom_usuario']?>" required></center>
                     <center><input type="text" name="apellido" id="apellido" value="<?php echo $row['apellido_usuario']?>" required></center>
                     <center><input type="email" name="email" id="email" value="<?php echo $row['correo_usuario']?>" required></center>
-                    <center><input type="password" name="password" id="password" placeholder="Introduzca la contraseña..." required></center>
                     <center><input type="submit" name="enviar" value="ENVIAR" class="btn btn-success"></center>
             </form>
                     <?php
