@@ -26,7 +26,7 @@ _Clonaremos el repositorio del proyecto en esa carpeta_
 
 ```
 git clone "url del proyecto"
-En este caso: https://github.com/danirc09/PR02
+En este caso: https://github.com/danirc09/PR02.git
 ```
 
 _Una vez hecho esto ya tendrías el proyecto en local para poder ejecutarlo y modificar código_
