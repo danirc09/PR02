@@ -26,7 +26,7 @@ _Clonaremos el repositorio del proyecto en esa carpeta_
 
 ```
 git clone "url del proyecto"
-En este caso: https://github.com/danirc09/README.git
+En este caso: https://github.com/danirc09/PR02
 ```
 
 _Una vez hecho esto ya tendrías el proyecto en local para poder ejecutarlo y modificar código_
@@ -34,6 +34,7 @@ _Una vez hecho esto ya tendrías el proyecto en local para poder ejecutarlo y mo
 ### Despliegue 📦
 
 _Subido a 000webhost_
+_https://abpdm.000webhostapp.com/_
 
 ### Analice las pruebas end-to-end 🔩
 
@@ -50,10 +51,6 @@ _Explica que verifican estas pruebas y por qué_
 ```
 Da un ejemplo
 ```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
 
 ## Construido con 🛠️
 
@@ -77,7 +74,7 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 ## Autores ✒️
 
-* **Daniel Ruano** - *Trabajo Inicial* - [dannylarrea](https://github.com/danirc09/README.git)
+* **Daniel Ruano** - *Trabajo Inicial* - [danirc09](https://github.com/danirc09/README.git)
 
 ## Licencia 📄
 
