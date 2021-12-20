@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include '../services/connection.php';
 include '../services/reserva.php';
 
@@ -10,11 +11,14 @@ $perfil=$_POST['perfil'];
 /*Comprobamos que elusuario no existe*/
 
 try{
+    $pdo->beginTransaction();
     $stmt_usr = $pdo->prepare("SELECT * FROM tbl_usuario WHERE correo_usuario=?");
     $stmt_usr->bindParam(1, $email);
     $stmt_usr->execute();
     $num_rows_usr = $stmt_usr->fetchAll(PDO::FETCH_ASSOC);
+    $pdo->commit();
 }catch (PDOException $e) {
+    $pdo->rollBack();
     echo $e->getMessage();
 }
 
@@ -33,6 +37,7 @@ if(!$num_rows_usr == 1){
         // Excecute
         $stmt->execute();
         header('Location: ../view/administrar_usuarios.php');
+        ob_end_flush();
         $pdo->commit();
     }catch (PDOException $e) {
         $pdo->rollBack();
@@ -40,4 +45,5 @@ if(!$num_rows_usr == 1){
     }
 }else{
     header('Location: ../view/crear_user.php?error=error');
+    ob_end_flush();
 }

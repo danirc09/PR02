@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 if (isset($_POST['email']) && isset($_POST['password'])) {
     include '../services/connection.php';
     try{
@@ -33,17 +33,19 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 session_start();
                 $_SESSION['nom_user']=$nom;
                 header("location: ../view/inicio.php");
+                ob_end_flush();
             }else{
                 session_start();
                 $_SESSION['nom_user']=$nom;
                 $_SESSION['correo']=$email;
                 header("location: ../view/zona_admin.php");
+                ob_end_flush();
             }
         }else {
             session_start();
             $_SESSION['error']=1;
             header("location: ../view/login.php?error=errorlogin");
-
+            ob_end_flush();
         }
         $pdo->commit();
     } catch (PDOException $e) {
@@ -52,5 +54,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }else{
     header("location: ../view/login.php");
+    ob_end_flush();
 }
 

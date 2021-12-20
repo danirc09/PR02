@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include '../services/connection.php';
 include '../services/reserva.php';
 
@@ -15,11 +16,14 @@ try{
     if($stmt2->execute()){
         if($stmt->execute()){
             header('Location: ../view/administrar_lugares.php');
+            ob_end_flush();
         }else{
             header('Location: ../view/administrar_lugares.php?error');
+            ob_end_flush();
         }
     }else{
         header('Location: ../view/administrar_lugares.php?error');
+        ob_end_flush();
     }
     
     $pdo->commit();

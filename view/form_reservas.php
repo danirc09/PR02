@@ -1,8 +1,10 @@
 <?php
+ob_start();
 include '../services/connection.php';
 include '../services/reserva.php';
 if (!isset($_GET['id'])&&!isset($_GET['id_pag'])) {
     header('Location: ./inicio.php');
+    ob_end_flush();
 }else{
     $id_mesa = $_GET['id'];
     $id_pag = $_GET['id_pag'];

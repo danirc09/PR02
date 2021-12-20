@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include '../services/connection.php';
 include '../services/reserva.php';
 
@@ -11,6 +12,7 @@ try{
     $stmt->execute();
     
     header('Location: ../view/administrar_lugares.php');
+    ob_end_flush();
     $pdo->commit();
 }catch (PDOException $e) {
     $pdo->rollBack();

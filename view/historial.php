@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +15,15 @@
 </head>
 
 <body id="portada">
-        <?php
+<?php
             include '../services/connection.php';
             include '../services/reserva.php';
+            session_start();
+            if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
+            header('Location: login.php');
+            ob_end_flush();
+            }
+            $correo = $_SESSION['correo'];
         ?>
     <div class="row2" id="section-1">
         <div class="usuario column-1">

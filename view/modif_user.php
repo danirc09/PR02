@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +21,7 @@
             session_start();
             if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
             header('Location: login.php');
+            ob_end_flush();
             }
             $correo = $_SESSION['correo'];
             $id_usr = $_GET['id'];

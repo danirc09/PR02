@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +16,13 @@
 
 <body id="portada">
 <?php
-include '../services/connection.php';
-include '../services/reserva.php';
+    include '../services/connection.php';
+    include '../services/reserva.php';
+        session_start();
+            if (!isset($_SESSION['nom_user'])&&!isset($_SESSION['correo'])) {
+                header('Location: login.php');
+                ob_end_flush();
+            }
 $id = $_GET['id'];
 
 if($id == 1){
