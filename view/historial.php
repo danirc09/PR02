@@ -23,7 +23,6 @@ ob_start();
             header('Location: login.php');
             ob_end_flush();
             }
-            $correo = $_SESSION['correo'];
         ?>
     <div class="row2" id="section-1">
         <div class="usuario column-1">
