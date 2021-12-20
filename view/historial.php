@@ -46,7 +46,7 @@ ob_start();
                     <div class="tam2"><input type="text" name="nom_cliente_reserva" id="nom_cliente_reserva" placeholder="Nombre cliente..."></div>
                     <div class="tam2"><input type="date" name="fecha_reserva" id="fecha_reserva" min="<?php echo date("Y-m-d"); ?>"></div>
                     <div class="tam2"><select name="fecha_ini_reserva" id="fecha_ini_reserva" required>
-                        <option value="%">---</option>
+                        <option value="%">Hora de entrada</option>
                         <option value="12:00:00">12:00</option>
                         <option value="13:00:00">13:00</option>
                         <option value="14:00:00">14:00</option>
@@ -60,7 +60,7 @@ ob_start();
                         <option value="22:00:00">22:00</option>
                     </select></div>
                     <div class="tam2"><select name="fecha_fin_reserva" id="fecha_fin_reserva" required>
-                        <option value="%">---</option>
+                        <option value="%">Hora de salida</option>
                         <option value="12:00:00">12:00</option>
                         <option value="13:00:00">13:00</option>
                         <option value="14:00:00">14:00</option>
@@ -74,7 +74,7 @@ ob_start();
                         <option value="22:00:00">22:00</option>
                     </select></div>
                     <div class="tam2"><input type='text' name='nom_lugar' id='nom_lugar' placeholder="Lugar..."></div>
-                    <div class="tam2"><input type='number' name='numero_mesa' id='numero_mesa' placeholder="Mesa..."></div>
+                    <div class="tam2"><input type='number' name='numero_mesa' min="1" id='numero_mesa' placeholder="Mesa..."></div>
                     <center><input class="input_resto" type="submit" name="enviar" value="FILTRAR"></center>
                 </form>
             </div>

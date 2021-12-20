@@ -59,7 +59,6 @@ ob_start();
             </div>
     </div>
     <footer>
-        <img class="logo_footer" id="myBtn" onclick="return btn_incidencias();">
         <a href="./historial.php"><img class="logo_footer2" id="myBtn2" onclick="return btn_log();"></a>
     </footer>
     <div>

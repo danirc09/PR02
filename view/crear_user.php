@@ -47,7 +47,7 @@ ob_start();
     </div>
     <div class="flex">
         <div class="contenido_admin_users">
-            <form action="../processes/modif_user.proc.php" method="post">
+            <form action="../processes/insert_user.proc.php" method="post">
                 <center><input type="text" name="nombre" id="nombre" placeholder="nombre..." required></center>
                 <center><input type="text" name="apellido" id="apellido" placeholder="apellido..." required></center>
                 <center><input type="email" name="email" id="email" placeholder="email..." required></center>

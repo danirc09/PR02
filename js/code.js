@@ -150,3 +150,12 @@ function btn_mod() {
 function errorini() {
     document.getElementById("errorinicio").innerHTML = ""
 }
+
+function alerta(id) {
+    var opcion = confirm("Se eliminaran todos los registros asociados a esta sala(mesa y reservas), quieres continuar?");
+    if (opcion == true) {
+        window.location.href = "../processes/elim_lugar.proc.php?id=" + id;
+    } else {
+        alert('Has decidido no eliminar los registros.');
+    }
+}
